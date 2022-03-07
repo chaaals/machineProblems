@@ -9,7 +9,6 @@ int electionData[5][5] = {};
 const char * headers[] = {"Precincts", "Candidate A", "Candidate B", "Candidate C", "Candidate D"};
 int totalVotesPerCandidate[4] = {0,0,0,0};
 float votePercentageOfCandidate[4] = {};
-float candidateRank[4] = {};
 float sumOfVotes = 0.0;
 int userInput, navigation = 1;
 int i,j,k,l,x;
@@ -123,25 +122,13 @@ int dataManip(){
 		gotoxy(15*x,10);printf("%.2f", votePercentageOfCandidate[i]);
 	}
 	
-	// identifying the index of the candidate winner/runner up
-	if(percentagePlaceholder[0] >= 50.00){
-		for(l = 0; l <= 3; l++){
-			if(percentagePlaceholder[0] == votePercentageOfCandidate[l]){
+	// identifying the index of the candidate winner
+	for(l = 0; l <= 3; l++){
+		if(percentagePlaceholder[0] == votePercentageOfCandidate[l]){
 				gotoxy(0,12);printf("Candidate winner: %s", candidates[l]);
-			}
 		}
 	}
-	
-	else{
-		for(k = 0; k <= 1;k++){
-			for(l = 0; l <= 3; l++){
-				if(percentagePlaceholder[k] == votePercentageOfCandidate[l]){
-					gotoxy(0,12+k);printf("Runner up: %s",  candidates[l]);
-				} 
-			}
-		}	
-	}
-	
+
 	gotoxy(25,14);printf("1 to create a new table, 0 to exit: ");scanf("%d", &navigation);
 	
 	return navigation;
